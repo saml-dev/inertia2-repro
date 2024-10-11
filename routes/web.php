@@ -8,12 +8,16 @@ Route::get('/', function () {
   return Inertia::render('Home');
 })->name('home');
 
-Route::middleware(['auth', 'verified'])->get('/page1', function () {
-  return Inertia::render('Page1');
+Route::get('/page1', function () {
+  return Inertia::render('Page1', [
+    "message" => Inertia::defer(fn() => ["text" => "hi from deferred prop!"])
+  ]);
 })->name('page1');
 
-Route::middleware(['auth', 'verified'])->get('/page2', function () {
-  return Inertia::render('Page2');
+Route::get('/page2', function () {
+  return Inertia::render('Page2', [
+    "message" => Inertia::defer(fn() => ["text" => "hi from deferred prop!"])
+  ]);
 })->name('page2');
 
 Route::middleware('auth')->group(function () {
